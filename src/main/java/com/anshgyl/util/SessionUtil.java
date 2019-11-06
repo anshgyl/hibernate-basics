@@ -1,5 +1,6 @@
 package com.anshgyl.util;
 
+import com.anshgyl.bean.Address;
 import com.anshgyl.bean.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -20,7 +21,8 @@ public class SessionUtil {
             //Uncomment the line below to use hibernate.cfg.xml
             //configuration.configure();
 
-            configuration.addAnnotatedClass(User.class);
+            configuration.addAnnotatedClass(User.class)
+                        .addAnnotatedClass(Address.class);
 
             sessionFactory = configuration.buildSessionFactory();
         } catch (HibernateException ex) {
