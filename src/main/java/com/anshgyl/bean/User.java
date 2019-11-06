@@ -2,6 +2,9 @@ package com.anshgyl.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -9,6 +12,9 @@ public class User {
     private Integer id;
     private String name;
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Address> addressSet = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -34,12 +40,21 @@ public class User {
         this.email = email;
     }
 
+    public Set<Address> getAddressSet() {
+        return addressSet;
+    }
+
+    public void setAddressSet(Set<Address> addressSet) {
+        this.addressSet = addressSet;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", addressSet=" + addressSet +
                 '}';
     }
 }

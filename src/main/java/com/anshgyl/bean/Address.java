@@ -1,11 +1,17 @@
 package com.anshgyl.bean;
 
+import javax.persistence.*;
+
+@Entity
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String street;
     private String city;
-    private String state;
-    private Integer pincode;
+
+    @ManyToOne
+    private User user;
 
     public Integer getId() {
         return id;
@@ -31,20 +37,12 @@ public class Address {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
+    public User getUser() {
+        return user;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Integer getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(Integer pincode) {
-        this.pincode = pincode;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -53,8 +51,7 @@ public class Address {
                 "id=" + id +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", pincode=" + pincode +
+                ", user=" + user +
                 '}';
     }
 }
